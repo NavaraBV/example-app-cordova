@@ -31,8 +31,6 @@
 
     methods: {
       onDeviceReady: function() {
-
-
         this.startOnegini();
       },
 
