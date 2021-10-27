@@ -31,6 +31,10 @@
 
     methods: {
       onDeviceReady: function() {
+        this.startOnegini();
+      },
+
+      setupPushNotifications: function () {
         const pusher = PushNotification.init({android: {},ios: {alert: "true", badge: "true", sound: "true"}});
         pusher.on('registration', (data) => {
           window.localStorage.setItem("fcmToken", data.registrationId);
@@ -51,8 +55,6 @@
         pusher.on('error', (e) => {
           navigator.notification.alert('Push message error: ' + e.message);
         });
-
-        this.startOnegini();
       },
 
       startOnegini: function () {
@@ -60,6 +62,7 @@
 
         onegini.start()
           .then(() => {
+            this.setupPushNotifications();
             this.state = 'Ready!';
             return onegini.user.getAuthenticatedUserProfile();
           })
