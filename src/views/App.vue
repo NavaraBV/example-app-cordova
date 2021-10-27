@@ -36,31 +36,35 @@
         this.startOnegini();
       },
 
+      setupPushNotifications: function () {
+        const pusher = PushNotification.init({android: {},ios: {alert: "true", badge: "true", sound: "true"}});
+        pusher.on('registration', (data) => {
+          window.localStorage.setItem("fcmToken", data.registrationId);
+        });
+
+        pusher.on('notification', (data) => {
+          if (onegini.mobileAuth.push.canHandlePushMessage(data.additionalData)) {
+            onegini.mobileAuth.push.handlePushMessage(data.additionalData)
+              .catch((err) => navigator.notification.alert('Push message error: ' + err.description));
+          } else {
+            var message = (data.title ? data.title + " " : "") + (data.message ? data.message : "");
+            if (message.length > 0) {
+              navigator.notification.alert(message);
+            }
+          }
+        });
+
+        pusher.on('error', (e) => {
+          navigator.notification.alert('Push message error: ' + e.message);
+        });
+      },
+
       startOnegini: function () {
         this.state = 'Waiting for Onegini Plugin...';
 
         onegini.start()
           .then(() => {
-            const pusher = PushNotification.init({android: {},ios: {alert: "true", badge: "true", sound: "true"}});
-            pusher.on('registration', (data) => {
-              window.localStorage.setItem("fcmToken", data.registrationId);
-            });
-
-            pusher.on('notification', (data) => {
-              if (onegini.mobileAuth.push.canHandlePushMessage(data.additionalData)) {
-                onegini.mobileAuth.push.handlePushMessage(data.additionalData)
-                  .catch((err) => navigator.notification.alert('Push message error: ' + err.description));
-              } else {
-                var message = (data.title ? data.title + " " : "") + (data.message ? data.message : "");
-                if (message.length > 0) {
-                  navigator.notification.alert(message);
-                }
-              }
-            });
-
-            pusher.on('error', (e) => {
-              navigator.notification.alert('Push message error: ' + e.message);
-            });
+            this.setupPushNotifications();
             this.state = 'Ready!';
             return onegini.user.getAuthenticatedUserProfile();
           })
