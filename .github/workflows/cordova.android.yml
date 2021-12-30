@@ -58,10 +58,10 @@ jobs:
         exec: |
           cordova platform add android
     
-    - name: Run onegini-sdk-configurator
-      run: |
-         $GITHUB_WORKSPACE/onegini-sdk-configurator android --config $GITHUB_WORKSPACE/onegini-config-android.zip --app-dir $GITHUB_WORKSPACE/platforms/android -m app --debugDetection=false --rootDetection=false
-      shell: bash
+#     - name: Run onegini-sdk-configurator
+#       run: |
+#          $GITHUB_WORKSPACE/onegini-sdk-configurator android --config $GITHUB_WORKSPACE/onegini-config-android.zip --app-dir $GITHUB_WORKSPACE/platforms/android -m app --debugDetection=false --rootDetection=false
+#       shell: bash
 
     - name: Use oxr463/setup-cordova
       uses: oxr463/setup-cordova@0.0.3
