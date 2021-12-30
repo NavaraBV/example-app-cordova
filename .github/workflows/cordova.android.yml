@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-20.04
     
     env:
+      JAVA_HOME: $JAVA_HOME_8_X64
       ONEGINI_AUTOCONFIGURE: "false"
       ONEGINI_SDK_CONFIGURATOR_PATH: $GITHUB_WORKSPACE
       ONEGINI_CONFIG_ANDROID_PATH: $GITHUB_WORKSPACE/onegini-config-android.zip
