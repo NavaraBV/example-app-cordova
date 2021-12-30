@@ -67,11 +67,17 @@ jobs:
     
     - run: cordova platform add android
     
-    - name: Download onegini-sdk-configurator
+    - name: Rename Android Build Tools file to prevent error
       run: |
          /bin/mv /usr/local/lib/android/sdk/build-tools/32.0.0/d8 /usr/local/lib/android/sdk/build-tools/32.0.0/dx
          /bin/mv /usr/local/lib/android/sdk/build-tools/32.0.0/lib/d8.jar /usr/local/lib/android/sdk/build-tools/32.0.0/lib/dx.jar
-      shell: bash      
+      shell: bash
+
+    - name: Exclude package from jetifier in build
+      run: |
+         sed -i -z 's/$/\n/g' $GITHUB_WORKSPACE/platforms/android/gradle.properties
+         echo -n "android.jetifier.blacklist=bcprov" >> $GITHUB_WORKSPACE/platforms/android/gradle.properties
+      shell: bash
     
     - run: cordova build --no-telemetry
       env:
