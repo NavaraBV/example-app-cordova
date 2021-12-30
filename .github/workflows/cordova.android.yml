@@ -67,8 +67,11 @@ jobs:
     
     - run: cordova platform add android
     
-    - run: mv /usr/local/lib/android/sdk/build-tools/32.0.0/d8 /usr/local/lib/android/sdk/build-tools/32.0.0/dx && \
-           mv /usr/local/lib/android/sdk/build-tools/32.0.0/lib/d8.jar /usr/local/lib/android/sdk/build-tools/32.0.0/lib/dx.jar
+    - name: Download onegini-sdk-configurator
+      run: |
+         mv /usr/local/lib/android/sdk/build-tools/32.0.0/d8 /usr/local/lib/android/sdk/build-tools/32.0.0/dx
+         mv /usr/local/lib/android/sdk/build-tools/32.0.0/lib/d8.jar /usr/local/lib/android/sdk/build-tools/32.0.0/lib/dx.jar
+      shell: bash      
     
     - run: cordova build --no-telemetry
       env:
