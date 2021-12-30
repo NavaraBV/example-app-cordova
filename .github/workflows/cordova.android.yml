@@ -13,9 +13,6 @@ jobs:
   build:
 
     runs-on: ubuntu-20.04
-    
-#     env:
-#       ONEGINI_AUTOCONFIGURE: "false"
 
     strategy:
       matrix:
@@ -30,7 +27,6 @@ jobs:
         echo "ONEGINI_SDK_CONFIGURATOR_PATH=$GITHUB_WORKSPACE/onegini-sdk-configurator" >> $GITHUB_ENV
         echo "ONEGINI_CONFIG_ANDROID_PATH=$GITHUB_WORKSPACE/onegini-config-android.zip" >> $GITHUB_ENV
         echo "JAVA_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
-        echo "JAVA_HOME_8.0.312_x64=$JAVA_HOME_8_X64" >> $GITHUB_ENV
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
@@ -42,9 +38,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-
-#     - name: Setup Android SDK
-#       uses: android-actions/setup-android@v2
 
     - uses: maxim-lobanov/setup-android-tools@v1
       with:
@@ -88,15 +81,3 @@ jobs:
       with:
         name: example-app-cordova-apk
         path: /home/runner/work/example-app-cordova/example-app-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk
-    
-#     - name: Run onegini-sdk-configurator
-#       run: |
-#          $GITHUB_WORKSPACE/onegini-sdk-configurator android --config $GITHUB_WORKSPACE/onegini-config-android.zip --app-dir $GITHUB_WORKSPACE/platforms/android -m app --debugDetection=false --rootDetection=false
-#       shell: bash
-
-#     - name: Use oxr463/setup-cordova
-#       uses: oxr463/setup-cordova@0.0.3
-#       with:
-#         exec: |
-#           cordova build --no-telemetry && \
-#           cp "$(find . -name '*.apk')" .
