@@ -13,6 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-20.04
+    
+    env:
+      ONEGINI_SDK_CONFIGURATOR_PATH: $GITHUB_WORKSPACE
+      ONEGINI_CONFIG_ANDROID_PATH: $GITHUB_WORKSPACE/onegini-config-android.zip
 
     strategy:
       matrix:
@@ -42,7 +46,7 @@ jobs:
       run: |
          curl -O -L https://github.com/onewelcome/sdk-configurator/releases/download/5.0.0/onegini-sdk-configurator-linux-64bit.zip > onegini-sdk-configurator-linux-64bit.zip
          unzip onegini-sdk-configurator-linux-64bit.zip
-         export ONEGINI_SDK_CONFIGURATOR_PATH=$pwd/onegini-sdk-configurator
+         ls
       shell: bash
       
     - run: npm run build
@@ -53,10 +57,10 @@ jobs:
         exec: |
           cordova platform add android
     
-    - name: Run onegini-sdk-configurator
-      run: |
-         ./onegini-sdk-configurator android --config ./onegini-config-android.zip --app-dir ./platforms/android -m app --debugDetection=false --rootDetection=false
-      shell: bash
+#     - name: Run onegini-sdk-configurator
+#       run: |
+#          ./onegini-sdk-configurator android --config ./onegini-config-android.zip --app-dir ./platforms/android -m app --debugDetection=false --rootDetection=false
+#       shell: bash
 
     - name: Use oxr463/setup-cordova
       uses: oxr463/setup-cordova@0.0.3
