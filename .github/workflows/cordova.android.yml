@@ -14,8 +14,8 @@ jobs:
 
     runs-on: ubuntu-20.04
     
-    env:
-      ONEGINI_AUTOCONFIGURE: "false"
+#     env:
+#       ONEGINI_AUTOCONFIGURE: "false"
 
     strategy:
       matrix:
