@@ -83,16 +83,11 @@ jobs:
       env:
         ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
         ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
-    
-    - name: Copy APK file to workspace root
-      run: |
-         cp "$(find . -name '*.apk')" $GITHUB_WORKSPACE/
-      shell: bash
         
     - uses: actions/upload-artifact@v2
       with:
         name: example-app-cordova-apk
-        path: $GITHUB_WORKSPACE/app-debug.apk
+        path: $GITHUB_WORKSPACE/platforms/android/app/build/outputs/apk/debug/app-debug.apk
     
 #     - name: Run onegini-sdk-configurator
 #       run: |
