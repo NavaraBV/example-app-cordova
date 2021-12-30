@@ -87,7 +87,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: example-app-cordova-apk
-        path: $GITHUB_WORKSPACE/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+        path: /home/runner/work/example-app-cordova/example-app-cordova/platforms/android/app/build/outputs/apk/debug/app-debug.apk
     
 #     - name: Run onegini-sdk-configurator
 #       run: |
