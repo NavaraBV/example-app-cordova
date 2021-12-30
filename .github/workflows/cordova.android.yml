@@ -62,6 +62,9 @@ jobs:
     - run: cordova platform add android
     
     - run: cordova build --no-telemetry
+      env:
+        ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
+        ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
 
 #     - name: Use oxr463/setup-cordova
 #       uses: oxr463/setup-cordova@0.0.3
