@@ -15,10 +15,7 @@ jobs:
     runs-on: ubuntu-20.04
     
     env:
-      JAVA_HOME: $JAVA_HOME_8_X64
       ONEGINI_AUTOCONFIGURE: "false"
-      ONEGINI_SDK_CONFIGURATOR_PATH: $GITHUB_WORKSPACE
-      ONEGINI_CONFIG_ANDROID_PATH: $GITHUB_WORKSPACE/onegini-config-android.zip
 
     strategy:
       matrix:
@@ -27,6 +24,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: "Set environmental variables"
+      run: |
+        echo "ONEGINI_SDK_CONFIGURATOR_PATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+        echo "ONEGINI_CONFIG_ANDROID_PATH=$GITHUB_WORKSPACE/onegini-config-android.zip" >> $GITHUB_ENV
+        echo "JAVA_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
