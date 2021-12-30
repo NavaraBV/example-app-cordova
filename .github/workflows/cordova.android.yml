@@ -56,21 +56,27 @@ jobs:
       shell: bash
       
     - run: npm run build
+    
+    - run: npm install -g cordova
+    
+    - run: cordova platform add android
+    
+    - run: cordova build --no-telemetry
 
-    - name: Use oxr463/setup-cordova
-      uses: oxr463/setup-cordova@0.0.3
-      with:
-        exec: |
-          cordova platform add android
+#     - name: Use oxr463/setup-cordova
+#       uses: oxr463/setup-cordova@0.0.3
+#       with:
+#         exec: |
+#           cordova platform add android
     
 #     - name: Run onegini-sdk-configurator
 #       run: |
 #          $GITHUB_WORKSPACE/onegini-sdk-configurator android --config $GITHUB_WORKSPACE/onegini-config-android.zip --app-dir $GITHUB_WORKSPACE/platforms/android -m app --debugDetection=false --rootDetection=false
 #       shell: bash
 
-    - name: Use oxr463/setup-cordova
-      uses: oxr463/setup-cordova@0.0.3
-      with:
-        exec: |
-          cordova build --no-telemetry && \
-          cp "$(find . -name '*.apk')" .
+#     - name: Use oxr463/setup-cordova
+#       uses: oxr463/setup-cordova@0.0.3
+#       with:
+#         exec: |
+#           cordova build --no-telemetry && \
+#           cp "$(find . -name '*.apk')" .
