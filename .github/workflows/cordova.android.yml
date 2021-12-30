@@ -50,7 +50,7 @@ jobs:
       with:
         packages: |
           platforms;android-31
-          system-images;android-31;google_apis;x86
+          system-images;android-30;google_apis;x86
 
     - run: npm install
     
