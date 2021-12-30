@@ -42,6 +42,7 @@ jobs:
       run: |
          curl -O -L https://github.com/onewelcome/sdk-configurator/releases/download/5.0.0/onegini-sdk-configurator-linux-64bit.zip > onegini-sdk-configurator-linux-64bit.zip
          unzip onegini-sdk-configurator-linux-64bit.zip
+         export ONEGINI_SDK_CONFIGURATOR_PATH=$pwd/onegini-sdk-configurator
       shell: bash
       
     - run: npm run build
