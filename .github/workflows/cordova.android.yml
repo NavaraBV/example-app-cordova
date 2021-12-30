@@ -30,6 +30,7 @@ jobs:
         echo "ONEGINI_SDK_CONFIGURATOR_PATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
         echo "ONEGINI_CONFIG_ANDROID_PATH=$GITHUB_WORKSPACE/onegini-config-android.zip" >> $GITHUB_ENV
         echo "JAVA_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
+        echo "JAVA_HOME_8.0.312_x64=$JAVA_HOME_8_X64" >> $GITHUB_ENV
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
