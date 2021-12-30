@@ -45,6 +45,12 @@ jobs:
       shell: bash
       
     - run: npm run build
+
+    - name: Use oxr463/setup-cordova
+      uses: oxr463/setup-cordova@0.0.3
+      with:
+        exec: |
+          cordova platform add android
     
     - name: Run onegini-sdk-configurator
       run: |
@@ -55,6 +61,5 @@ jobs:
       uses: oxr463/setup-cordova@0.0.3
       with:
         exec: |
-          cordova platform add android && \
           cordova build --no-telemetry && \
           cp "$(find . -name '*.apk')" .
