@@ -37,6 +37,14 @@ jobs:
       uses: android-actions/setup-android@v2
 
     - run: npm install
+    
+    - name: Download onegini-sdk-configurator
+      run: |
+         curl -O -L https://github.com/onewelcome/sdk-configurator/releases/download/5.0.0/onegini-sdk-configurator-linux-64bit.zip > onegini-sdk-configurator-linux-64bit.zip
+         unzip onegini-sdk-configurator-linux-64bit.zip
+      shell: bash
+      
+    - run: npm run build
 
     - name: Use oxr463/setup-cordova
       uses: oxr463/setup-cordova@0.0.3
@@ -45,6 +53,3 @@ jobs:
           cordova platform add android && \
           cordova build --no-telemetry && \
           cp "$(find . -name '*.apk')" .
-#     - run: npm ci
-#     - run: npm run build --if-present
-#     - run: npm test
